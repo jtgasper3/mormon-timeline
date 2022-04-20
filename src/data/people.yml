@@ -1,0 +1,59 @@
+- id: smith_joseph_iii
+  name: Joseph Smith III
+  title: Second President of the Church
+  birth:
+    date: 1832-11-06
+    place: Kirtland, Ohio, U.S.
+    references: 
+      - https://en.wikipedia.org/wiki/Joseph_Smith_III
+  death:
+    date: 1914-12-10
+    place: Independence, Missouri, U.S.
+    references:
+      - https://en.wikipedia.org/wiki/Joseph_Smith_III
+  category: rlds
+
+- id: smith_joseph_jr
+  name: Joseph Smith Jr.
+  title: Founder and First President of the Church
+  birth:
+    date: 1805-12-23
+    place: Sharon, Vermont, U.S.
+    references: 
+      - https://en.wikipedia.org/wiki/Joseph_Smith
+  death:
+    date: 1844-06-27
+    place: Carthage, Illinois, U.S.
+    references:
+      - https://en.wikipedia.org/wiki/Joseph_Smith
+  category: common
+
+- id: smith_hale_emma
+  name: Emma Hale Smith Bidamon
+  title: Wife to Joseph Smith Jr and first President of the Relief Society
+  birth:
+    date: 1804-07-10
+    place: Harmony Township, Pennsylvania, U.S.
+    references: 
+      - https://en.wikipedia.org/wiki/Emma_Smith
+  death:
+    date: 1879-04-30
+    place: Nauvoo, Illinois, U.S.
+    references:
+      - https://en.wikipedia.org/wiki/Emma_Smith
+  category: common
+
+- id: young_brigham
+  name: Brigham Young
+  title: Second President of the Church (Utah)
+  birth:
+    date: 1801-06-01
+    place: Whitingham, Vermont, U.S.
+    references: 
+      - https://en.wikipedia.org/wiki/Joseph_Smith
+  death:
+    date: 1877-08-29
+    place: Salt Lake City, Utah Territory, U.S.
+    references:
+      - https://en.wikipedia.org/wiki/Joseph_Smith
+  category: lds

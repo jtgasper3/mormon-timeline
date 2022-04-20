@@ -1,8 +1,8 @@
 <template>
   <v-timeline>
     <v-timeline-item
-      v-for="(item, i) in items"
-      :key="i"
+      v-for="(item) in items"
+      :key="item.id"
       fill-dot
       :dot-color="item.color"
       size="small" 
@@ -20,7 +20,7 @@
         >
           {{item.title}}
         </v-card-title>
-        <v-card-subtitle v-if="item.subtitle">Test</v-card-subtitle>
+        <v-card-subtitle v-if="item.subtitle">{{item.subtitle}}</v-card-subtitle>
         <v-card-text v-if="item.description">
           {{item.description}}
         </v-card-text>
@@ -32,37 +32,12 @@
   </v-timeline>
 </template>
 
-<script>
-  import { VTimeline, VTimelineItem } from 'vuetify/components'
-
-  export default {
-    name: 'HistoricTimeline',
-    components: {
-      VTimeline,
-      VTimelineItem
-    },
-
-    data: () => ({
-      items: [
-        {
-          color: 'cyan',
-          title: 'Joseph Smith Jr.\'s Birth',
-          description: 'Joseph Smith was born in Sharon, Vermont.',
-          references: ['https://en.wikipedia.org/wiki/Joseph_Smith'],
-          category: 'common',
-          tags: ['birth'],
-          date: '1805-12-23',
-        },
-        {
-          color: 'cyan',
-          title: 'Joseph Smith Jr.\'s Death',
-          description: 'Joseph Smith died in Carthage, Illinois.',
-          references: ['https://en.wikipedia.org/wiki/Joseph_Smith'],
-          category: 'common',
-          tags: ['birth'],
-          date: '1844-06-27',
-        },
-      ],
-    }),
-  }
+<script setup>
+  import { computed, reactive } from 'vue'
+  // import { VTimeline, VTimelineItem } from 'vuetify/components'
+  import * as data from '@/services'
+      
+  const items = computed(() => {
+    return data.getEvents()
+  })
 </script>
