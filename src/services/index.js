@@ -1,17 +1,34 @@
-import people from '@/data/people.yml'
 import bom from '@/data/bom.yml'
+import people from '@/data/people.yml'
 
 export function getEvents() {
     const events = []
     
-    events.push(...convertPeopleToEvents())
     events.push(...convertBomToEvents())
+    events.push(...convertPeopleToEvents())
 
     return events.sort((a, b) => a.date - b.date)
 }
 
+function convertBomToEvents() {
+    const convertedEvents = []
+
+    bom.forEach((e) => convertedEvents.push({
+        id: 'bom' + e.id + '_birth',
+        title: e.title,
+        date: e.date,
+        description: e.description,
+        references: e.references,
+        category: e.category,
+        tags: ['bom'],
+    }))
+
+    return convertedEvents
+}
+
 function convertPeopleToEvents() {
     const convertedEvents = []
+
     people.forEach(person => {
         if (person.birth) {
             convertedEvents.push({
@@ -38,21 +55,6 @@ function convertPeopleToEvents() {
             })
         }
     })
-
-    return convertedEvents
-}
-
-function convertBomToEvents() {
-const convertedEvents = []
-    bom.forEach((e) => convertedEvents.push({
-        id: 'bom' + e.id + '_birth',
-        title: e.title,
-        date: e.date,
-        description: e.description,
-        references: e.references,
-        category: e.category,
-        tags: ['bom'],
-    }))
 
     return convertedEvents
 }
