@@ -118,7 +118,6 @@
 
   onMounted(() => {
     state.events = data.getEvents() ?? []
-    console.log(`the component is now mounted.`)
   })
 
   const filteredEvents = computed(() => {
@@ -128,18 +127,21 @@
   })
 
   function getCategoryColor(category) {
-    console.log(category)
     const categoryObj = categories.find((i) => i.value === category)
-    console.log(categoryObj)
     return !categoryObj ? 'black' : categoryObj.color
   }
 
   watch(() => state.events, (count) => {
-    console.log(`count is: ${state.events.count}`)
     state.dateRangeMin = Math.floor(Math.min.apply(Math, state.events.map(function(o) { return new Date(o.date).getUTCFullYear()})) / 10) * 10
     state.dateRangeMax = Math.ceil(Math.max.apply(Math, state.events.map(function(o) { return new Date(o.date).getUTCFullYear()})) / 10) * 10
     if (state.dateRangeValue.length === 0) {
       state.dateRangeValue = [state.dateRangeMin, state.dateRangeMax]
+    }
+
+    if (state.filterCategories.length === 0) {
+      state.filterCategories = state.events
+        .map(e => e.category)
+        .filter((category, index, arr) => arr.indexOf(category) == index)
     }
   })
 </script>
