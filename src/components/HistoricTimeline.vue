@@ -29,7 +29,7 @@
           <v-col cols="12">
             Time Range:
             <v-range-slider
-              v-model="state.dateRangeValue"
+              v-model="state.filterDateRange"
               :min="state.dateRangeMin"
               :max="state.dateRangeMax"
               step="10"
@@ -81,7 +81,7 @@
   import * as data from '@/services'
   
   const denominations = [
-  {
+    {
       label: 'Common',
       value: 'common',
     },
@@ -111,7 +111,8 @@
   const state = reactive({
     events: [],
     filterCategories: [],
-    dateRangeValue: [],
+    filterDenominations: [],
+    filterDateRange: [],
     dateRangeMin: 0,
     dateRangeMax: 0,
   })
@@ -123,7 +124,7 @@
   const filteredEvents = computed(() => {
     return state.events
       .filter((e) => state.filterCategories.includes(e.category))
-      .filter((e) => e.date > new Date(state.dateRangeValue[0], 0) && e.date < new Date(state.dateRangeValue[1], 11))
+      .filter((e) => e.date > new Date(state.filterDateRange[0], 0) && e.date < new Date(state.filterDateRange[1], 11))
   })
 
   function getCategoryColor(category) {
@@ -134,8 +135,8 @@
   watch(() => state.events, (count) => {
     state.dateRangeMin = Math.floor(Math.min.apply(Math, state.events.map(function(o) { return new Date(o.date).getUTCFullYear()})) / 10) * 10
     state.dateRangeMax = Math.ceil(Math.max.apply(Math, state.events.map(function(o) { return new Date(o.date).getUTCFullYear()})) / 10) * 10
-    if (state.dateRangeValue.length === 0) {
-      state.dateRangeValue = [state.dateRangeMin, state.dateRangeMax]
+    if (state.filterDateRange.length === 0) {
+      state.filterDateRange = [state.dateRangeMin, state.dateRangeMax]
     }
 
     if (state.filterCategories.length === 0) {
