@@ -15,8 +15,6 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-jobs:
   deploy:
     runs-on: ubuntu-latest
     name: build_and_deploy
@@ -39,4 +37,4 @@ jobs:
           ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
           local_path: './dist/*'
           remote_path: './mormontimeline.org/public_html'
-          args: '-o ConnectTimeout=5'
+          args: '-o ConnectTimeout=5 -P 18765'
