@@ -4,6 +4,6 @@ import { getEvents } from '@/services/events.js'
 describe("event services", () => {
     it('getEvents()', () => {
         const events = getEvents()
-        expect(events.length).toBeGreaterThan(2)
+        expect(events.length).toBeGreaterThan(200)
     })
 })
