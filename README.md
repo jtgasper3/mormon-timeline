@@ -1,5 +1,6 @@
 Mormon Timeline
 ===================
+[![Deployment](https://github.com/jtgasper3/mormon-timeline/actions/workflows/deploy.yml/badge.svg)](https://github.com/jtgasper3/mormon-timeline/actions/workflows/deploy.yml)
 
 A timeline of Mormonism
 
