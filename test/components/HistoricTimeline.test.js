@@ -15,4 +15,6 @@ describe("HistoricTimeline", () => {
       global: {
         plugins: [vuetify],
       },
+    })
   })
+})
