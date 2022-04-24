@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vuetify from '@vuetify/vite-plugin'
-//import yamlPlugin from 'vite-plugin-yaml' // Out of date plugin implemented below, keep for dependenies
+//import yamlPlugin from 'vite-plugin-yaml' // Out of date plugin implemented below, keep for dependencies
 
 const path = require('path')
 
@@ -48,4 +48,12 @@ export default defineConfig({
     ]
   },
   */
+  test: {
+    globals: true,
+    setupFiles: ["test/vitest.beforeall.js"],
+    environment: 'happy-dom',
+    deps: {
+      inline: ["vuetify"],
+    },
+  },
 })

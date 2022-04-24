@@ -78,7 +78,7 @@
 <script setup>
   import { computed, onMounted, reactive, watch } from 'vue'
   // import { VTimeline, VTimelineItem } from 'vuetify/components'
-  import * as data from '@/services'
+  import { getEvents } from '@/services'
   
   const denominations = [
     {
@@ -118,7 +118,7 @@
   })
 
   onMounted(() => {
-    state.events = data.getEvents() ?? []
+    state.events = getEvents() ?? []
   })
 
   const filteredEvents = computed(() => {
