@@ -38,7 +38,8 @@ function convertPeopleToEvents() {
                 date: person.birth.date,
                 description: person.name + ' was born in ' + person.birth.place + '.',
                 references: person.birth.references,
-                category: person.category,
+                denomination: person.category,
+                category: 'people',
                 tags: ['birth'],
             })
         }
@@ -50,7 +51,8 @@ function convertPeopleToEvents() {
                 date: person.death.date,
                 description: person.name + ' died in ' + person.death.place + '.',
                 references: person.death.references,
-                category: person.category,
+                denomination: person.category,
+                category: 'people', 
                 tags: ['birth'],
             })
         }

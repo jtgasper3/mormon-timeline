@@ -11,7 +11,7 @@
     place: Independence, Missouri, U.S.
     references:
       - https://en.wikipedia.org/wiki/Joseph_Smith_III
-  category: rlds
+  denomination: rlds
 
 - id: smith_joseph_jr
   name: Joseph Smith Jr.
@@ -26,7 +26,7 @@
     place: Carthage, Illinois, U.S.
     references:
       - https://en.wikipedia.org/wiki/Joseph_Smith
-  category: common
+  denominations: common
 
 - id: smith_hale_emma
   name: Emma Hale Smith Bidamon
@@ -41,7 +41,7 @@
     place: Nauvoo, Illinois, U.S.
     references:
       - https://en.wikipedia.org/wiki/Emma_Smith
-  category: common
+  denominations: common
 
 - id: young_brigham
   name: Brigham Young
@@ -56,4 +56,4 @@
     place: Salt Lake City, Utah Territory, U.S.
     references:
       - https://en.wikipedia.org/wiki/Joseph_Smith
-  category: lds
+  denominations: lds

@@ -1,30 +1,73 @@
 <template>
+  <v-expansion-panels class="mb-5">
+    <v-expansion-panel>
+      <v-expansion-panel-title>
+        Filters
+      </v-expansion-panel-title>
+      <v-expansion-panel-text>
+        <v-row no-gutters>
+          <v-col cols="12">
+            Categories: 
+          </v-col>
+        </v-row>
+        <v-row no-gutters>
+          <v-col cols="4"
+            v-for="item in categories"
+            :key="item.value"
+          >
+            <v-switch
+              v-model="state.filterCategories"
+              :color="item.color"
+              :label="item.label"
+              :value="item.value"
+              hide-details
+              density="compact"
+            ></v-switch>
+          </v-col>
+        </v-row>
+        <v-row no-gutters>
+          <v-col cols="12">
+            Time Range:
+            <v-range-slider
+              v-model="state.dateRangeValue"
+              :min="state.dateRangeMin"
+              :max="state.dateRangeMax"
+              step="10"
+              thumb-label="always"
+              strict
+            ></v-range-slider>
+          </v-col>
+        </v-row>
+  
+      </v-expansion-panel-text>
+    </v-expansion-panel>
+  </v-expansion-panels>
   <v-timeline>
     <v-timeline-item
-      v-for="(item) in items"
-      :key="item.id"
+      v-for="(event) in filteredEvents"
+      :key="event.id"
       fill-dot
-      :dot-color="item.color"
+      :dot-color="getCategoryColor(event.category)"
       size="small" 
     >
       <template v-slot:opposite>
         <span
-          :class="`headline font-weight-bold text-${item.color}`"
-          v-text="item.date"
+          :class="`headline font-weight-bold text-${getCategoryColor(event.category)}`"
+          v-text="event.date"
         ></span>
       </template>
       <v-card>
         <v-card-title
-          v-if="item.title"
-          :class="`headline font-weight-light text-${item.color}`"
+          v-if="event.title"
+          :class="`headline font-weight-light text-${getCategoryColor(event.category)}`"
         >
-          {{item.title}}
+          {{event.title}}
         </v-card-title>
-        <v-card-subtitle v-if="item.subtitle">{{item.subtitle}}</v-card-subtitle>
-        <v-card-text v-if="item.description">
-          {{item.description}}
+        <v-card-subtitle v-if="event.subtitle">{{event.subtitle}}</v-card-subtitle>
+        <v-card-text v-if="event.description">
+          {{event.description}}
         </v-card-text>
-        <v-card-actions>
+        <v-card-actions v-if="false">
           
         </v-card-actions>
       </v-card>
@@ -33,11 +76,70 @@
 </template>
 
 <script setup>
-  import { computed, reactive } from 'vue'
+  import { computed, onMounted, reactive, watch } from 'vue'
   // import { VTimeline, VTimelineItem } from 'vuetify/components'
   import * as data from '@/services'
-      
-  const items = computed(() => {
-    return data.getEvents()
+  
+  const denominations = [
+  {
+      label: 'Common',
+      value: 'common',
+    },
+    {
+      label: 'Latter-day Saints',
+      value: 'lds',
+    },
+    {
+      label: 'Community of Christ',
+      value: 'rlds',
+    },
+  ]
+
+  const categories = [
+    {
+      label: 'Book Of Mormon',
+      value: 'bom',
+      color: 'cyan',
+    },
+    {
+      label: 'People',
+      value: 'people',
+      color: 'pink',
+    },
+  ] // amber, orange
+  
+  const state = reactive({
+    events: [],
+    filterCategories: [],
+    dateRangeValue: [],
+    dateRangeMin: 0,
+    dateRangeMax: 0,
+  })
+
+  onMounted(() => {
+    state.events = data.getEvents() ?? []
+    console.log(`the component is now mounted.`)
+  })
+
+  const filteredEvents = computed(() => {
+    return state.events
+      .filter((e) => state.filterCategories.includes(e.category))
+      .filter((e) => e.date > new Date(state.dateRangeValue[0], 0) && e.date < new Date(state.dateRangeValue[1], 11))
+  })
+
+  function getCategoryColor(category) {
+    console.log(category)
+    const categoryObj = categories.find((i) => i.value === category)
+    console.log(categoryObj)
+    return !categoryObj ? 'black' : categoryObj.color
+  }
+
+  watch(() => state.events, (count) => {
+    console.log(`count is: ${state.events.count}`)
+    state.dateRangeMin = Math.floor(Math.min.apply(Math, state.events.map(function(o) { return new Date(o.date).getUTCFullYear()})) / 10) * 10
+    state.dateRangeMax = Math.ceil(Math.max.apply(Math, state.events.map(function(o) { return new Date(o.date).getUTCFullYear()})) / 10) * 10
+    if (state.dateRangeValue.length === 0) {
+      state.dateRangeValue = [state.dateRangeMin, state.dateRangeMax]
+    }
   })
 </script>
