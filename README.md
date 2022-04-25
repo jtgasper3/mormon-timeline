@@ -18,17 +18,24 @@ npm run dev
 1. Fork the repo on GitHub.
 1. Clone your copy of the repo.
 1. Make and test changes locally.
+1. Test your changes: `npm run lint && npm run test`
 1. Commit changes to your repo.
 1. Make a pull request to the main project with your code.
 
 ---
 
-# Boilerplate Readme
+# Tech Stack
 
-## Vue 3 + Vite
+## Core Frameworks
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+- [Vue](https://vuejs.org/)
+- [Vuetify 3](https://vuetifyjs.com/)
+- [Vite](https://vitejs.dev/)
+- [Vitest](https://vitest.dev/)
 
-### Recommended IDE Setup
+## IDE
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar)
+- [VS Code](https://code.visualstudio.com/)
+- [Prettier Extension](https://marketplace.visualstudio.com/items?itemName=antfu.vite)
+- [Volar Extension](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar)
+- [Prettier Extension](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
