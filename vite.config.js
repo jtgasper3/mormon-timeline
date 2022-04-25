@@ -1,27 +1,33 @@
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
-import vuetify from '@vuetify/vite-plugin'
+import { defineConfig } from "vite";
+import eslintPlugin from "vite-plugin-eslint";
+import vue from "@vitejs/plugin-vue";
+import vuetify from "@vuetify/vite-plugin";
 //import yamlPlugin from 'vite-plugin-yaml' // Out of date plugin implemented below, keep for dependencies
 
-const path = require('path')
+const path = require("path");
 
 const yamlPlugin = {
   transform(code, id) {
-    var __importDefault = (this && this.__importDefault) || function (mod) {
-      return (mod && mod.__esModule) ? mod : { "default": mod };
-    };
+    var __importDefault =
+      (this && this.__importDefault) ||
+      function (mod) {
+        return mod && mod.__esModule ? mod : { default: mod };
+      };
     const tosource_1 = __importDefault(require("tosource"));
     if (!/\.ya?ml$/.test(id)) {
-      return
+      return;
     }
-    const transformedCode = `const data = ${tosource_1.default(require("js-yaml").safeLoad(code))}\n`;
-    return transformedCode + 'export default data';
-  }
-}
+    const transformedCode = `const data = ${tosource_1.default(
+      require("js-yaml").safeLoad(code)
+    )}\n`;
+    return transformedCode + "export default data";
+  },
+};
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
+    eslintPlugin(),
     vue(),
     // https://github.com/vuetifyjs/vuetify-loader/tree/next/packages/vite-plugin
     vuetify({
@@ -29,10 +35,10 @@ export default defineConfig({
     }),
     yamlPlugin,
   ],
-  define: { 'process.env': {} },
+  define: { "process.env": {} },
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, 'src'),
+      "@": path.resolve(__dirname, "src"),
     },
   },
   /* remove the need to specify .vue files https://vitejs.dev/config/#resolve-extensions
@@ -51,9 +57,9 @@ export default defineConfig({
   test: {
     globals: true,
     setupFiles: ["test/vitest.beforeall.js"],
-    environment: 'happy-dom',
+    environment: "happy-dom",
     deps: {
       inline: ["vuetify"],
     },
   },
-})
+});

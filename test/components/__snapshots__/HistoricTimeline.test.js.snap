@@ -1,0 +1,48 @@
+// Vitest Snapshot v1
+
+exports[`HistoricTimeline > mount component 1`] = `
+"<div class=\\"v-expansion-panels v-theme--light v-expansion-panels--variant-default mb-5\\">
+  <div class=\\"v-expansion-panel\\" aria-expanded=\\"false\\">
+    <div class=\\"v-expansion-panel__shadow\\"></div>
+    <!---->
+    <!----><button class=\\"v-expansion-panel-title\\" type=\\"button\\" disabled=\\"false\\" aria-expanded=\\"false\\">
+      <div class=\\"v-expansion-panel-title__overlay\\"></div> Filters <div class=\\"v-expansion-panel-title__icon\\"><i class=\\"mdi-chevron-down mdi v-icon notranslate v-icon--size-default v-theme--light\\" aria-hidden=\\"true\\"></i></div>
+    </button>
+    <transition-stub>
+      <div class=\\"v-expansion-panel-text\\" style=\\"display: none;\\">
+        <!---->
+      </div>
+    </transition-stub>
+  </div>
+</div>
+<div class=\\"v-timeline v-timeline--vertical v-theme--light v-timeline--density-default\\" style=\\"--v-timeline-line-thickness: 2px; --v-timeline-line-inset: 0px;\\">
+  <!---->
+  <div class=\\"v-timeline-item v-timeline-item--fill-dot\\" style=\\"--v-timeline-dot-size: 0px;\\">
+    <div class=\\"v-timeline-item__body\\">
+      <div class=\\"v-card v-theme--light v-card--density-default v-card--variant-contained\\">
+        <!---->
+        <div class=\\"v-card__underlay\\"></div>
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <div class=\\"v-card-title headline font-weight-light text-cyan\\">Mormon Timeline Created</div>
+        <!--v-if-->
+        <div class=\\"v-card-text\\">This is a test</div>
+        <!--v-if-->
+        <!---->
+      </div>
+    </div>
+    <div class=\\"v-timeline-divider v-timeline-divider--fill-dot\\">
+      <div class=\\"v-timeline-divider__dot v-timeline-divider__dot--size-small\\">
+        <div class=\\"v-timeline-divider__inner-dot bg-cyan\\">
+          <!---->
+        </div>
+      </div>
+      <div class=\\"v-timeline-divider__line\\"></div>
+    </div>
+    <div class=\\"v-timeline-item__opposite\\"><span class=\\"headline font-weight-bold text-cyan\\">Fri Apr 22 2022 00:00:00 GMT-0700 (Pacific Daylight Time)</span></div>
+  </div>
+</div>"
+`;

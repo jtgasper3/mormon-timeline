@@ -1,20 +1,13 @@
 <template>
   <v-expansion-panels class="mb-5">
     <v-expansion-panel>
-      <v-expansion-panel-title>
-        Filters
-      </v-expansion-panel-title>
+      <v-expansion-panel-title> Filters </v-expansion-panel-title>
       <v-expansion-panel-text>
         <v-row no-gutters>
-          <v-col cols="12">
-            Categories: 
-          </v-col>
+          <v-col cols="12"> Categories: </v-col>
         </v-row>
         <v-row no-gutters>
-          <v-col cols="4"
-            v-for="item in categories"
-            :key="item.value"
-          >
+          <v-col v-for="item in categories" :key="item.value" cols="4">
             <v-switch
               v-model="state.filterCategories"
               :color="item.color"
@@ -38,111 +31,137 @@
             ></v-range-slider>
           </v-col>
         </v-row>
-  
       </v-expansion-panel-text>
     </v-expansion-panel>
   </v-expansion-panels>
   <v-timeline>
     <v-timeline-item
-      v-for="(event) in filteredEvents"
+      v-for="event in filteredEvents"
       :key="event.id"
       fill-dot
       :dot-color="getCategoryColor(event.category)"
-      size="small" 
+      size="small"
     >
-      <template v-slot:opposite>
+      <template #opposite>
         <span
-          :class="`headline font-weight-bold text-${getCategoryColor(event.category)}`"
+          :class="`headline font-weight-bold text-${getCategoryColor(
+            event.category
+          )}`"
           v-text="event.date"
         ></span>
       </template>
       <v-card>
         <v-card-title
           v-if="event.title"
-          :class="`headline font-weight-light text-${getCategoryColor(event.category)}`"
+          :class="`headline font-weight-light text-${getCategoryColor(
+            event.category
+          )}`"
         >
-          {{event.title}}
+          {{ event.title }}
         </v-card-title>
-        <v-card-subtitle v-if="event.subtitle">{{event.subtitle}}</v-card-subtitle>
+        <v-card-subtitle v-if="event.subtitle">{{
+          event.subtitle
+        }}</v-card-subtitle>
         <v-card-text v-if="event.description">
-          {{event.description}}
+          {{ event.description }}
         </v-card-text>
-        <v-card-actions v-if="false">
-          
-        </v-card-actions>
+        <v-card-actions v-if="false"> </v-card-actions>
       </v-card>
     </v-timeline-item>
   </v-timeline>
 </template>
 
 <script setup>
-  import { computed, onMounted, reactive, watch } from 'vue'
-  // import { VTimeline, VTimelineItem } from 'vuetify/components'
-  import { getEvents } from '@/services'
-  
-  const denominations = [
-    {
-      label: 'Common',
-      value: 'common',
-    },
-    {
-      label: 'Latter-day Saints',
-      value: 'lds',
-    },
-    {
-      label: 'Community of Christ',
-      value: 'rlds',
-    },
-  ]
+import { computed, onMounted, reactive, watch } from "vue";
+// import { VTimeline, VTimelineItem } from 'vuetify/components'
+import { getEvents } from "@/services";
 
-  const categories = [
-    {
-      label: 'Book Of Mormon',
-      value: 'bom',
-      color: 'cyan',
-    },
-    {
-      label: 'People',
-      value: 'people',
-      color: 'pink',
-    },
-  ] // amber, orange
-  
-  const state = reactive({
-    events: [],
-    filterCategories: [],
-    filterDenominations: [],
-    filterDateRange: [],
-    dateRangeMin: 0,
-    dateRangeMax: 0,
-  })
+// const denominations = [
+//   {
+//     label: 'Common',
+//     value: 'common',
+//   },
+//   {
+//     label: 'Latter-day Saints',
+//     value: 'lds',
+//   },
+//   {
+//     label: 'Community of Christ',
+//     value: 'rlds',
+//   },
+// ]
 
-  onMounted(() => {
-    state.events = getEvents() ?? []
-  })
+const categories = [
+  {
+    label: "Book Of Mormon",
+    value: "bom",
+    color: "cyan",
+  },
+  {
+    label: "People",
+    value: "people",
+    color: "pink",
+  },
+]; // amber, orange
 
-  const filteredEvents = computed(() => {
-    return state.events
-      .filter((e) => state.filterCategories.includes(e.category))
-      .filter((e) => e.date > new Date(state.filterDateRange[0], 0) && e.date < new Date(state.filterDateRange[1], 11))
-  })
+const state = reactive({
+  events: [],
+  filterCategories: [],
+  filterDenominations: [],
+  filterDateRange: [],
+  dateRangeMin: 0,
+  dateRangeMax: 0,
+});
 
-  function getCategoryColor(category) {
-    const categoryObj = categories.find((i) => i.value === category)
-    return !categoryObj ? 'black' : categoryObj.color
-  }
+onMounted(() => {
+  state.events = getEvents() ?? [];
+});
 
-  watch(() => state.events, (count) => {
-    state.dateRangeMin = Math.floor(Math.min.apply(Math, state.events.map(function(o) { return new Date(o.date).getUTCFullYear()})) / 10) * 10
-    state.dateRangeMax = Math.ceil(Math.max.apply(Math, state.events.map(function(o) { return new Date(o.date).getUTCFullYear()})) / 10) * 10
+const filteredEvents = computed(() => {
+  return state.events
+    .filter((e) => state.filterCategories.includes(e.category))
+    .filter(
+      (e) =>
+        e.date > new Date(state.filterDateRange[0], 0) &&
+        e.date < new Date(state.filterDateRange[1], 11)
+    );
+});
+
+function getCategoryColor(category) {
+  const categoryObj = categories.find((i) => i.value === category);
+  return !categoryObj ? "black" : categoryObj.color;
+}
+
+watch(
+  () => state.events,
+  () => {
+    state.dateRangeMin =
+      Math.floor(
+        Math.min.apply(
+          Math,
+          state.events.map(function (o) {
+            return new Date(o.date).getUTCFullYear();
+          })
+        ) / 10
+      ) * 10;
+    state.dateRangeMax =
+      Math.ceil(
+        Math.max.apply(
+          Math,
+          state.events.map(function (o) {
+            return new Date(o.date).getUTCFullYear();
+          })
+        ) / 10
+      ) * 10;
     if (state.filterDateRange.length === 0) {
-      state.filterDateRange = [state.dateRangeMin, state.dateRangeMax]
+      state.filterDateRange = [state.dateRangeMin, state.dateRangeMax];
     }
 
     if (state.filterCategories.length === 0) {
       state.filterCategories = state.events
-        .map(e => e.category)
-        .filter((category, index, arr) => arr.indexOf(category) == index)
+        .map((e) => e.category)
+        .filter((category, index, arr) => arr.indexOf(category) == index);
     }
-  })
+  }
+);
 </script>

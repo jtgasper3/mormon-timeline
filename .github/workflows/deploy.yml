@@ -2,9 +2,9 @@ name: Deployment
 
 on:
   push:
-    branches: [ main ]
-#  pull_request:
-#    branches: [ main ]
+    branches: [main]
+  #  pull_request:
+  #    branches: [ main ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -21,21 +21,24 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
+      - name: Run Linter
+        run: npm run lint
+
       - name: Run Unit Tests
         run: npm run test
-        
+
       - name: Build
         run: npm run build
 
       - name: Deploy files
         uses: wlixcc/SFTP-Deploy-Action@v1.0
         with:
-          username: '${{ secrets.SSH_USERNAME }}'
-          server: '${{ secrets.SSH_HOSTNAME }}'
+          username: "${{ secrets.SSH_USERNAME }}"
+          server: "${{ secrets.SSH_HOSTNAME }}"
           ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
-          local_path: './dist/*'
-          remote_path: '/home/customer/www/${{ secrets.SITE_NAME }}/public_html'
-          args: '-o ConnectTimeout=5 -P 18765'
+          local_path: "./dist/*"
+          remote_path: "/home/customer/www/${{ secrets.SITE_NAME }}/public_html"
+          args: "-o ConnectTimeout=5 -P 18765"
 
       - name: Purge Cloudflare cache
         uses: jakejarvis/cloudflare-purge-action@master

@@ -1,5 +1,5 @@
-Mormon Timeline
-===================
+# Mormon Timeline
+
 [![Deployment](https://github.com/jtgasper3/mormon-timeline/actions/workflows/deploy.yml/badge.svg)](https://github.com/jtgasper3/mormon-timeline/actions/workflows/deploy.yml)
 
 A timeline of Mormonism
@@ -21,7 +21,7 @@ npm run dev
 1. Commit changes to your repo.
 1. Make a pull request to the main project with your code.
 
---- 
+---
 
 # Boilerplate Readme
 

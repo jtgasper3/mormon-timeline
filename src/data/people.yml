@@ -4,7 +4,7 @@
   birth:
     date: 1832-11-06
     place: Kirtland, Ohio, U.S.
-    references: 
+    references:
       - https://en.wikipedia.org/wiki/Joseph_Smith_III
   death:
     date: 1914-12-10
@@ -19,7 +19,7 @@
   birth:
     date: 1805-12-23
     place: Sharon, Vermont, U.S.
-    references: 
+    references:
       - https://en.wikipedia.org/wiki/Joseph_Smith
   death:
     date: 1844-06-27
@@ -34,7 +34,7 @@
   birth:
     date: 1804-07-10
     place: Harmony Township, Pennsylvania, U.S.
-    references: 
+    references:
       - https://en.wikipedia.org/wiki/Emma_Smith
   death:
     date: 1879-04-30
@@ -49,7 +49,7 @@
   birth:
     date: 1801-06-01
     place: Whitingham, Vermont, U.S.
-    references: 
+    references:
       - https://en.wikipedia.org/wiki/Joseph_Smith
   death:
     date: 1877-08-29
