@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "@mdi/font": "5.9.55",
+    "date-fns": "^2.28.0",
     "roboto-fontface": "*",
     "vue": "^3.2.25",
     "vuetify": "^3.0.0-beta.0",

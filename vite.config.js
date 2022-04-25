@@ -8,16 +8,10 @@ const path = require("path");
 
 const yamlPlugin = {
   transform(code, id) {
-    var __importDefault =
-      (this && this.__importDefault) ||
-      function (mod) {
-        return mod && mod.__esModule ? mod : { default: mod };
-      };
-    const tosource_1 = __importDefault(require("tosource"));
     if (!/\.ya?ml$/.test(id)) {
       return;
     }
-    const transformedCode = `const data = ${tosource_1.default(
+    const transformedCode = `const data = ${JSON.stringify(
       require("js-yaml").safeLoad(code)
     )}\n`;
     return transformedCode + "export default data";

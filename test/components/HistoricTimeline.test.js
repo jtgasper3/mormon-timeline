@@ -12,7 +12,7 @@ vi.mock("@/services", () => {
       {
         id: "bom_bob_birth",
         title: "Mormon Timeline Created",
-        date: new Date(2022, 3, 22),
+        date: new Date("2022-04-22T00:00:00"),
         description: "This is a test",
         references: [],
         category: "bom",

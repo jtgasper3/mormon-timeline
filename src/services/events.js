@@ -17,7 +17,7 @@ function convertBomToEvents() {
     convertedEvents.push({
       id: "bom_" + e.id,
       title: e.title,
-      date: e.date,
+      date: stripTimezone(e.date),
       description: e.description,
       references: e.references,
       category: e.category,
@@ -37,7 +37,7 @@ function convertPeopleToEvents() {
         id: "person_" + person.id + "_birth",
         title: person.name + "'s Birth",
         subtitle: person.title,
-        date: person.birth.date,
+        date: stripTimezone(person.birth.date),
         description: person.name + " was born in " + person.birth.place + ".",
         references: person.birth.references,
         denomination: person.category,
@@ -50,7 +50,7 @@ function convertPeopleToEvents() {
         id: "person_" + person.id + "_death",
         title: person.name + "'s Death",
         subtitle: person.title,
-        date: person.death.date,
+        date: stripTimezone(person.death.date),
         description: person.name + " died in " + person.death.place + ".",
         references: person.death.references,
         denomination: person.category,
@@ -61,4 +61,9 @@ function convertPeopleToEvents() {
   });
 
   return convertedEvents;
+}
+
+function stripTimezone(date) {
+  // our dates should be local... timezones mess stuff up.
+  return new Date(date.replace(/Z?$/i, ""));
 }

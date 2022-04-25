@@ -42,7 +42,7 @@ exports[`HistoricTimeline > mount component 1`] = `
       </div>
       <div class=\\"v-timeline-divider__line\\"></div>
     </div>
-    <div class=\\"v-timeline-item__opposite\\"><span class=\\"headline font-weight-bold text-cyan\\">Fri Apr 22 2022 00:00:00 GMT-0700 (Pacific Daylight Time)</span></div>
+    <div class=\\"v-timeline-item__opposite\\"><span class=\\"headline font-weight-bold text-cyan\\">April 22nd, 2022</span></div>
   </div>
 </div>"
 `;

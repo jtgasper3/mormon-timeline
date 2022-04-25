@@ -47,8 +47,7 @@
           :class="`headline font-weight-bold text-${getCategoryColor(
             event.category
           )}`"
-          v-text="event.date"
-        ></span>
+        >{{ formatDate(event.date) }}</span>
       </template>
       <v-card>
         <v-card-title
@@ -73,6 +72,7 @@
 
 <script setup>
 import { computed, onMounted, reactive, watch } from "vue";
+import { format } from "date-fns";
 // import { VTimeline, VTimelineItem } from 'vuetify/components'
 import { getEvents } from "@/services";
 
@@ -164,4 +164,8 @@ watch(
     }
   }
 );
+
+function formatDate(date) {
+  return format(date, "PPP");
+}
 </script>
