@@ -1,37 +1,13 @@
 // Vitest Snapshot v1
 
 exports[`HistoricTimeline > mount component 1`] = `
-"<div class=\\"v-expansion-panels v-theme--light v-expansion-panels--variant-default mb-5\\">
-  <div class=\\"v-expansion-panel\\" aria-expanded=\\"false\\">
-    <div class=\\"v-expansion-panel__shadow\\"></div>
-    <!---->
-    <!----><button class=\\"v-expansion-panel-title\\" type=\\"button\\" disabled=\\"false\\" aria-expanded=\\"false\\">
-      <div class=\\"v-expansion-panel-title__overlay\\"></div> Filters <div class=\\"v-expansion-panel-title__icon\\"><i class=\\"mdi-chevron-down mdi v-icon notranslate v-icon--size-default v-theme--light\\" aria-hidden=\\"true\\"></i></div>
-    </button>
-    <transition-stub>
-      <div class=\\"v-expansion-panel-text\\" style=\\"display: none;\\">
-        <!---->
-      </div>
-    </transition-stub>
-  </div>
-</div>
-<div class=\\"v-timeline v-timeline--vertical v-theme--light v-timeline--density-default\\" style=\\"--v-timeline-line-thickness: 2px; --v-timeline-line-inset: 0px;\\">
-  <!---->
+"<div class=\\"v-timeline v-timeline--vertical v-timeline--align-center v-theme--light v-timeline--density-default\\" style=\\"--v-timeline-line-thickness: 2px; --v-timeline-line-inset: 0px;\\">
   <div class=\\"v-timeline-item v-timeline-item--fill-dot\\" style=\\"--v-timeline-dot-size: 0px;\\">
     <div class=\\"v-timeline-item__body\\">
-      <div class=\\"v-card v-theme--light v-card--density-default v-card--variant-contained\\">
-        <!---->
-        <div class=\\"v-card__underlay\\"></div>
-        <!---->
-        <!---->
-        <!---->
-        <!---->
-        <!---->
-        <div class=\\"v-card-title headline font-weight-light text-cyan\\">Mormon Timeline Created</div>
+      <div>
+        <h2 class=\\"mt-n1 headline font-weight-light mb-4 text-cyan justify-end\\">Mormon Timeline Created</h2>
         <!--v-if-->
-        <div class=\\"v-card-text\\">This is a test</div>
-        <!--v-if-->
-        <!---->
+        <div>This is a test</div>
       </div>
     </div>
     <div class=\\"v-timeline-divider v-timeline-divider--fill-dot\\">
@@ -42,7 +18,26 @@ exports[`HistoricTimeline > mount component 1`] = `
       </div>
       <div class=\\"v-timeline-divider__line\\"></div>
     </div>
-    <div class=\\"v-timeline-item__opposite\\"><span class=\\"headline font-weight-bold text-cyan\\">April 22nd, 2022</span></div>
+    <div class=\\"v-timeline-item__opposite\\">
+      <div class=\\"pt-1 headline font-weight-bold text-cyan\\">April 22nd, 2022</div>
+    </div>
   </div>
-</div>"
+</div>
+<div class=\\"v-card v-card--flat v-theme--dark v-card--density-default v-card--fixed v-card--variant-contained px-1\\" style=\\"background-color: rgba(0, 0, 0, 0.3); width: 90px; top: 104px; right: -35px;\\">
+  <!---->
+  <div class=\\"v-card__underlay\\"></div>
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <!----><button type=\\"button\\" class=\\"v-btn v-btn--icon v-theme--dark v-btn--density-default v-btn--size-default v-btn--variant-plain\\" aria-haspopup=\\"dialog\\" aria-expanded=\\"false\\">
+    <div class=\\"v-btn__overlay\\"></div>
+    <div class=\\"v-btn__underlay\\"></div>
+    <!----><i class=\\"mdi-filter-menu mdi v-icon notranslate v-icon--size-default v-theme--dark v-btn__icon\\" aria-hidden=\\"true\\"></i>
+    <!---->
+  </button>
+  <!---->
+</div>
+<!--teleport start-->
+<!--teleport end-->"
 `;
