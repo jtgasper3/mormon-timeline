@@ -1,6 +1,7 @@
 # Mormon Timeline
 
 [![Deployment](https://github.com/jtgasper3/mormon-timeline/actions/workflows/deploy.yml/badge.svg)](https://github.com/jtgasper3/mormon-timeline/actions/workflows/deploy.yml)
+[![Issues](https://img.shields.io/github/issues/jtgasper3/mormon-timeline)](https://github.com/jtgasper3/mormon-timeline/issues)
 
 A timeline of Mormonism
 
