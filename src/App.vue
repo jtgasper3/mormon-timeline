@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar color="primary" density="compact">
+    <v-app-bar app color="primary" density="compact">
       <template #prepend>
         <v-app-bar-nav-icon></v-app-bar-nav-icon>
       </template>
@@ -11,7 +11,7 @@
         <v-btn icon="mdi-dots-vertical"></v-btn>
       </template>
     </v-app-bar>
-    <v-main>
+    <v-main app>
       <v-container>
         <HistoricTimeline />
       </v-container>
@@ -21,8 +21,8 @@
 </template>
 
 <script>
-import AppFooter from "./components/AppFooter.vue";
-import HistoricTimeline from "./components/HistoricTimeline.vue";
+import AppFooter from "@/components/AppFooter.vue";
+import HistoricTimeline from "@/components/HistoricTimeline.vue";
 
 export default {
   name: "App",

@@ -29,7 +29,10 @@ export default defineConfig({
     }),
     yamlPlugin,
   ],
-  define: { "process.env": {} },
+  define: {
+    "__APP_VERSION__": JSON.stringify(process.env.npm_package_version),
+    "process.env": {},
+  },
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "src"),

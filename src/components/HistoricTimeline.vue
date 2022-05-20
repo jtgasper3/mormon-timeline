@@ -1,39 +1,4 @@
 <template>
-  <v-expansion-panels class="mb-5">
-    <v-expansion-panel>
-      <v-expansion-panel-title> Filters </v-expansion-panel-title>
-      <v-expansion-panel-text>
-        <v-row no-gutters>
-          <v-col cols="12"> Categories: </v-col>
-        </v-row>
-        <v-row no-gutters>
-          <v-col v-for="item in categories" :key="item.value" cols="4">
-            <v-switch
-              v-model="state.filterCategories"
-              :color="item.color"
-              :label="item.label"
-              :value="item.value"
-              hide-details
-              density="compact"
-            ></v-switch>
-          </v-col>
-        </v-row>
-        <v-row no-gutters>
-          <v-col cols="12">
-            Time Range:
-            <v-range-slider
-              v-model="state.filterDateRange"
-              :min="state.dateRangeMin"
-              :max="state.dateRangeMax"
-              step="10"
-              thumb-label="always"
-              strict
-            ></v-range-slider>
-          </v-col>
-        </v-row>
-      </v-expansion-panel-text>
-    </v-expansion-panel>
-  </v-expansion-panels>
   <v-timeline>
     <v-timeline-item
       v-for="event in filteredEvents"
@@ -43,53 +8,67 @@
       size="small"
     >
       <template #opposite>
-        <span
-          :class="`headline font-weight-bold text-${getCategoryColor(
+        <div
+          :class="`pt-1 headline font-weight-bold text-${getCategoryColor(
             event.category
           )}`"
-        >{{ formatDate(event.date) }}</span>
+        >{{ formatDate(event.date) }}</div>
       </template>
-      <v-card>
-        <v-card-title
+
+      <div>
+        <h2
           v-if="event.title"
-          :class="`headline font-weight-light text-${getCategoryColor(
+          :class="`mt-n1 headline font-weight-light mb-4 text-${getCategoryColor(
             event.category
-          )}`"
+          )} justify-end`"
         >
           {{ event.title }}
-        </v-card-title>
-        <v-card-subtitle v-if="event.subtitle">{{
+        </h2>
+        <div v-if="event.subtitle">{{
           event.subtitle
-        }}</v-card-subtitle>
-        <v-card-text v-if="event.description">
+        }}</div>
+        <div v-if="event.description">
           {{ event.description }}
-        </v-card-text>
-        <v-card-actions v-if="false"> </v-card-actions>
-      </v-card>
+        </div>
+      </div>
     </v-timeline-item>
   </v-timeline>
+  
+  <v-dialog 
+    v-model="state.showFilters"
+    fullscreen
+    :scrim="false"
+    transition="dialog-bottom-transition"
+  >
+    <template #activator="{ props }">
+      <v-card
+        class="px-1"
+        flat
+        fixed
+        top="104"
+        right="-35"
+        width="90"
+        color="rgba(0, 0, 0, 0.3)"
+        theme="dark"
+      >
+        <v-btn
+          icon="mdi-filter-menu"
+          variant="plain"
+          v-bind="props"
+          
+        >
+        </v-btn>
+      </v-card>
+    </template>
+    <historic-timeline-filters :filters="state.filters" @close="state.showFilters = false"></historic-timeline-filters>
+  </v-dialog>
 </template>
 
 <script setup>
 import { computed, onMounted, reactive, watch } from "vue";
 import { format } from "date-fns";
-// import { VTimeline, VTimelineItem } from 'vuetify/components'
+import HistoricTimelineFilters from "@/components/HistoricTimelineFilters.vue";
 import { getEvents } from "@/services";
-
-// const denominations = [
-//   {
-//     label: 'Common',
-//     value: 'common',
-//   },
-//   {
-//     label: 'Latter-day Saints',
-//     value: 'lds',
-//   },
-//   {
-//     label: 'Community of Christ',
-//     value: 'rlds',
-//   },
-// ]
 
 const categories = [
   {
@@ -106,11 +85,14 @@ const categories = [
 
 const state = reactive({
   events: [],
-  filterCategories: [],
-  filterDenominations: [],
-  filterDateRange: [],
-  dateRangeMin: 0,
-  dateRangeMax: 0,
+  filters: {
+    categories: [],
+    denominations: [],
+    dateRange: [],
+    dateRangeMin: 0,
+    dateRangeMax: 0,
+  },
+  showFilters: false,
 });
 
 onMounted(() => {
@@ -119,11 +101,12 @@ onMounted(() => {
 
 const filteredEvents = computed(() => {
   return state.events
-    .filter((e) => state.filterCategories.includes(e.category))
+    .filter((e) => state.filters.categories.includes(e.category))
+    .filter((e) => state.filters.denominations.includes(e.denomination))
     .filter(
       (e) =>
-        e.date > new Date(state.filterDateRange[0], 0) &&
-        e.date < new Date(state.filterDateRange[1], 11)
+        e.date > new Date(state.filters.dateRange[0], 0) &&
+        e.date < new Date(state.filters.dateRange[1], 11)
     );
 });
 
@@ -135,7 +118,7 @@ function getCategoryColor(category) {
 watch(
   () => state.events,
   () => {
-    state.dateRangeMin =
+    state.filters.dateRangeMin =
       Math.floor(
         Math.min.apply(
           Math,
@@ -144,7 +127,7 @@ watch(
           })
         ) / 10
       ) * 10;
-    state.dateRangeMax =
+    state.filters.dateRangeMax =
       Math.ceil(
         Math.max.apply(
           Math,
@@ -153,14 +136,20 @@ watch(
           })
         ) / 10
       ) * 10;
-    if (state.filterDateRange.length === 0) {
-      state.filterDateRange = [state.dateRangeMin, state.dateRangeMax];
+    if (state.filters.dateRange.length === 0) {
+      state.filters.dateRange = [state.filters.dateRangeMin, state.filters.dateRangeMax];
     }
 
-    if (state.filterCategories.length === 0) {
-      state.filterCategories = state.events
+    if (state.filters.categories.length === 0) {
+      state.filters.categories = state.events
         .map((e) => e.category)
         .filter((category, index, arr) => arr.indexOf(category) == index);
+    }
+
+    if (state.filters.denominations.length === 0) {
+      state.filters.denominations = state.events
+        .map((e) => e.denomination)
+        .filter((denominations, index, arr) => arr.indexOf(denominations) == index);
     }
   }
 );
@@ -169,3 +158,4 @@ function formatDate(date) {
   return format(date, "PPP");
 }
 </script>
+

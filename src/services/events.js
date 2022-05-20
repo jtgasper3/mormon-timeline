@@ -21,6 +21,7 @@ function convertBomToEvents() {
       description: e.description,
       references: e.references,
       category: e.category,
+      denomination: e.denomination ?? 'common',
       tags: ["bom"],
     })
   );
@@ -40,7 +41,7 @@ function convertPeopleToEvents() {
         date: stripTimezone(person.birth.date),
         description: person.name + " was born in " + person.birth.place + ".",
         references: person.birth.references,
-        denomination: person.category,
+        denomination: person.denomination,
         category: "people",
         tags: ["birth"],
       });
@@ -53,7 +54,7 @@ function convertPeopleToEvents() {
         date: stripTimezone(person.death.date),
         description: person.name + " died in " + person.death.place + ".",
         references: person.death.references,
-        denomination: person.category,
+        denomination: person.denomination,
         category: "people",
         tags: ["birth"],
       });
