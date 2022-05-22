@@ -86,7 +86,7 @@ exports[`HistoricTimeline > mount component 1`] = `
   <!---->
   <!---->
   <!---->
-  <!----><button type=\\"button\\" class=\\"v-btn v-btn--icon v-theme--dark text-primary v-btn--density-default v-btn--size-default v-btn--variant-plain\\" aria-haspopup=\\"dialog\\" aria-expanded=\\"false\\">
+  <!----><button type=\\"button\\" class=\\"v-btn v-btn--icon v-theme--dark text-primary v-btn--density-default v-btn--size-default v-btn--variant-plain\\" aria-label=\\"Filter\\" aria-haspopup=\\"dialog\\" aria-expanded=\\"false\\">
     <div class=\\"v-btn__overlay\\"></div>
     <div class=\\"v-btn__underlay\\"></div>
     <!----><i class=\\"mdi-filter-menu mdi v-icon notranslate v-icon--size-default text-primary v-theme--dark\\" aria-hidden=\\"true\\" dark=\\"\\" aria-describedby=\\"v-tooltip-2\\"></i>

@@ -1,16 +1,8 @@
 <template>
-  <v-footer app>
+  <v-footer app absolute>
     <v-card elevation="0" rounded="0" width="100%" class="bg-grey text-center">
-      <v-card-text>
-        <v-btn class="mx-4" icon="mdi-home" variant="plain"></v-btn>
-        <v-btn class="mx-4" icon="mdi-email" variant="plain"></v-btn>
-        <v-btn class="mx-4" icon="mdi-calendar" variant="plain"></v-btn>
-      </v-card-text>
-
-      <v-divider></v-divider>
-
       <v-card-text class="text-white">
-        {{ new Date().getFullYear() }} — <strong>John Gasper - v{{ version }}</strong>
+        <strong>Managed by John Gasper - v{{ version }} - Built on {{ buildDate }}</strong>
       </v-card-text>
     </v-card>
   </v-footer>
@@ -19,4 +11,6 @@
 <script setup>
   // eslint-disable-next-line no-undef
   const version = __APP_VERSION__
+  // eslint-disable-next-line no-undef
+  const buildDate = __APP_BUILD_DATE__
 </script>

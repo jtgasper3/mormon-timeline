@@ -69,6 +69,7 @@
         <v-tooltip anchor="start">
           <template #activator="{ props: tipProps }">
             <v-btn
+              aria-label="Filter"
               color="primary"
               icon=""
               theme="dark"
