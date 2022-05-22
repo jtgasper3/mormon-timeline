@@ -13,7 +13,7 @@
     </v-app-bar>
     <v-main app>
       <v-container>
-        <HistoricTimeline />
+        <router-view></router-view>
       </v-container>
     </v-main>
     <AppFooter />
@@ -22,14 +22,12 @@
 
 <script>
 import AppFooter from "@/components/AppFooter.vue";
-import HistoricTimeline from "@/components/HistoricTimeline.vue";
 
 export default {
   name: "App",
 
   components: {
     AppFooter,
-    HistoricTimeline,
   },
 
   data: () => ({
