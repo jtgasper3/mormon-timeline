@@ -4,7 +4,7 @@ import { mount } from "@vue/test-utils";
 import { createVuetify } from "vuetify";
 import * as components from "vuetify/components";
 import * as directives from "vuetify/directives";
-import HistoricTimeline from "@/components/HistoricTimeline.vue";
+import TimelinePage from "@/views/TimelinePage.vue";
 
 vi.mock("@/services", () => {
   return {
@@ -22,13 +22,13 @@ vi.mock("@/services", () => {
   };
 });
 
-describe("HistoricTimeline", () => {
+describe("TimelinePage", () => {
   const vuetify = createVuetify({ components, directives });
 
   it("mount component", async () => {
-    expect(HistoricTimeline).toBeTruthy();
+    expect(TimelinePage).toBeTruthy();
 
-    const wrapper = mount(HistoricTimeline, {
+    const wrapper = mount(TimelinePage, {
       global: {
         plugins: [vuetify],
       },

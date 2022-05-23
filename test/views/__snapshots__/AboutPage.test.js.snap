@@ -1,0 +1,7 @@
+// Vitest Snapshot v1
+
+exports[`AboutPage > mount component 1`] = `
+"<div class=\\"v-row\\">
+  <div class=\\"v-col\\"></div>
+</div>"
+`;

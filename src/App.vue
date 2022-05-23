@@ -16,18 +16,18 @@
         <router-view></router-view>
       </v-container>
     </v-main>
-    <AppFooter />
+    <TheFooter />
   </v-app>
 </template>
 
 <script>
-import AppFooter from "@/components/AppFooter.vue";
+import TheFooter from "@/components/TheFooter.vue";
 
 export default {
   name: "App",
 
   components: {
-    AppFooter,
+    TheFooter,
   },
 
   data: () => ({
