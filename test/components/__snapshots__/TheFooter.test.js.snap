@@ -1,0 +1,29 @@
+// Vitest Snapshot v1
+
+exports[`TheFooter > mount component 1`] = `
+"<v-footer-stub app=\\"true\\" height=\\"auto\\" border=\\"false\\" priority=\\"0\\" absolute=\\"true\\" tag=\\"footer\\" class=\\"bg-grey-lighten-1\\">
+  <div class=\\"v-row v-row--no-gutters justify-center\\"><a class=\\"v-btn v-theme--light text-white v-btn--density-default rounded-xl v-btn--size-default v-btn--variant-text mx-2\\">
+      <div class=\\"v-btn__overlay\\"></div>
+      <div class=\\"v-btn__underlay\\"></div>
+      <!---->Home
+      <!---->
+    </a><a class=\\"v-btn v-theme--light text-white v-btn--density-default rounded-xl v-btn--size-default v-btn--variant-text mx-2\\">
+      <div class=\\"v-btn__overlay\\"></div>
+      <div class=\\"v-btn__underlay\\"></div>
+      <!---->About
+      <!---->
+    </a><a class=\\"v-btn v-theme--light text-white v-btn--density-default rounded-xl v-btn--size-default v-btn--variant-text mx-2\\">
+      <div class=\\"v-btn__overlay\\"></div>
+      <div class=\\"v-btn__underlay\\"></div>
+      <!---->Team
+      <!---->
+    </a><a class=\\"v-btn v-theme--light text-white v-btn--density-default rounded-xl v-btn--size-default v-btn--variant-text mx-2\\">
+      <div class=\\"v-btn__overlay\\"></div>
+      <div class=\\"v-btn__underlay\\"></div>
+      <!---->Contact Us
+      <!---->
+    </a>
+    <div class=\\"v-col v-col-12 text-center text-white mt-4\\"> Managed by John Gasper - vTEST_VERSION - Built on 01/20/1974</div>
+  </div>
+</v-footer-stub>"
+`;
