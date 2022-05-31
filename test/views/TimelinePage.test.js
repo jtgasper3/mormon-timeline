@@ -1,10 +1,7 @@
-import { nextTick } from "vue";
+import { waitFor } from "@testing-library/vue";
 import { describe, it, expect, vi } from "vitest";
-import { mount } from "@vue/test-utils";
-import { createVuetify } from "vuetify";
-import * as components from "vuetify/components";
-import * as directives from "vuetify/directives";
 import TimelinePage from "@/views/TimelinePage.vue";
+import { renderWithVuetify } from "../vitest.vuetifySetup.js";
 
 vi.mock("@/services", () => {
   return {
@@ -23,18 +20,10 @@ vi.mock("@/services", () => {
 });
 
 describe("TimelinePage", () => {
-  const vuetify = createVuetify({ components, directives });
-
   it("mount component", async () => {
-    expect(TimelinePage).toBeTruthy();
+    const { html } = renderWithVuetify(TimelinePage);
 
-    const wrapper = mount(TimelinePage, {
-      global: {
-        plugins: [vuetify],
-      },
-    });
-
-    await nextTick();
-    expect(wrapper.html()).toMatchSnapshot();
+    await waitFor(() => {});
+    expect(html()).toMatchSnapshot();
   });
 });

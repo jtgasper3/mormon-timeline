@@ -2,7 +2,6 @@ import { defineConfig } from "vite";
 import eslintPlugin from "vite-plugin-eslint";
 import vue from "@vitejs/plugin-vue";
 import vuetify from "@vuetify/vite-plugin";
-//import yamlPlugin from 'vite-plugin-yaml' // Out of date plugin implemented below, keep for dependencies
 
 const path = require("path");
 
@@ -12,7 +11,7 @@ const yamlPlugin = {
       return;
     }
     const transformedCode = `const data = ${JSON.stringify(
-      require("js-yaml").safeLoad(code)
+      require("js-yaml").load(code)
     )}\n`;
     return transformedCode + "export default data";
   },
@@ -30,8 +29,12 @@ export default defineConfig({
     yamlPlugin,
   ],
   define: {
-    "__APP_VERSION__": JSON.stringify(process.env.npm_package_version),
-    "__APP_BUILD_DATE__": JSON.stringify(new Date().toLocaleDateString('en-US') + ' ' + new Date().toLocaleTimeString('en-US')),
+    __APP_VERSION__: JSON.stringify(process.env.npm_package_version),
+    __APP_BUILD_DATE__: JSON.stringify(
+      new Date().toLocaleDateString("en-US") +
+        " " +
+        new Date().toLocaleTimeString("en-US")
+    ),
     "process.env": {},
   },
   resolve: {

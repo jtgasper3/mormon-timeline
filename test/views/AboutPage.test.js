@@ -1,24 +1,11 @@
-import { nextTick } from "vue";
-import { describe, it, expect } from "vitest";
-import { mount } from "@vue/test-utils";
-import { createVuetify } from "vuetify";
-import * as components from "vuetify/components";
-import * as directives from "vuetify/directives";
+import { describe, test, expect } from "vitest";
 import AboutPage from "@/views/AboutPage.vue";
+import { renderWithVuetify } from "../vitest.vuetifySetup.js";
 
 describe("AboutPage", () => {
-  const vuetify = createVuetify({ components, directives });
+  test("mount component", async () => {
+    const { html } = renderWithVuetify(AboutPage);
 
-  it("mount component", async () => {
-    expect(AboutPage).toBeTruthy();
-
-    const wrapper = mount(AboutPage, {
-      global: {
-        plugins: [vuetify],
-      },
-    });
-
-    await nextTick();
-    expect(wrapper.html()).toMatchSnapshot();
+    expect(html()).toMatchSnapshot();
   });
 });

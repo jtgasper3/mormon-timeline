@@ -1,38 +1,28 @@
-import { nextTick } from "vue";
-import { describe, it, expect, afterAll, beforeAll } from "vitest";
-import { config, mount } from "@vue/test-utils";
-import { createVuetify } from "vuetify";
-import * as components from "vuetify/components";
-import * as directives from "vuetify/directives";
+import { describe, test, expect } from "vitest";
+import { waitFor } from "@testing-library/vue";
+import { h } from "vue";
+import { VApp } from "vuetify/components";
 import TheFooter from "@/components/TheFooter.vue";
-
-  beforeAll(() => {
-    config.renderStubDefaultSlot = true
-  })
-
-  afterAll(() => {
-    config.renderStubDefaultSlot = false
-  })
+import { renderWithVuetify } from "../vitest.vuetifySetup.js";
 
 global.__APP_VERSION__ = "TEST_VERSION";
 global.__APP_BUILD_DATE__ = "01/20/1974";
 
 describe("TheFooter", () => {
-  const vuetify = createVuetify({ components, directives });
-  
-  it("mount component", async () => {
+  test("mount component", async () => {
     expect(TheFooter).toBeTruthy();
 
-    const wrapper = mount(TheFooter, {
-      global: {
-        plugins: [vuetify],
-        stubs: {
-          VFooter: true
-        }
-      },
-    });
+    const { html } = renderWithVuetify(
+      VApp,
+      {},
+      {
+        slots: {
+          default: h(TheFooter),
+        },
+      }
+    );
 
-    await nextTick();
-    expect(wrapper.html()).toMatchSnapshot();
+    await waitFor(() => {});
+    expect(html()).toMatchSnapshot();
   });
 });
